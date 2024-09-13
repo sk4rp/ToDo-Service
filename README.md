@@ -36,11 +36,11 @@
 - [Swagger](https://swagger.io/tools/swagger-ui/)
 
 ### Шаги для запуска
+https://github.com/sk4rp/ToDo-Service.git
 
 1. Клонируйте репозиторий:
     ```bash
-    git clone https://github.com/yourusername/todo-list-microservice.git
-    cd todo-list-microservice
+    git clone https://github.com/sk4rp/ToDo-Service.git
     ```
 
 2. Установите зависимости и выполните миграции базы данных:
@@ -63,10 +63,3 @@
 - **GET /api/tasks/{id}**: Получение задачи по идентификатору.
 - **PUT /api/tasks/{id}**: Обновление задачи.
 - **DELETE /api/tasks/{id}**: Удаление задачи.
-
-## Тестирование
-
-Для запуска тестов используйте xUnit:
-
-```bash
-dotnet test
