@@ -1,43 +1,72 @@
-	Разработайте микросервис для управления задачами (To-Do List) с использованием .NET и следующих технологий: 
-		CRUD операции: Создание, чтение, обновление и удаление задач. 
+# To-Do List Microservice
 
-	Чистая архитектура:
- 		Разделите приложение на слои (представление, бизнес-логика, доступ к данным) и опишите зависимости между ними.
-  		Используйте шаблон проектирования "Dependency Injection" для облегчения тестирования и поддержки.
+## Описание проекта
 
-	Работа с медиатором: 
- 		Используйте паттерн "Mediator" для организации взаимодействия между различными компонентами системы. 
-  		Реализуйте медиатор для централизованного управления командами и запросами задач.
+Этот проект представляет собой микросервис для управления задачами (To-Do List), реализованный с использованием технологий .NET. Проект включает в себя реализацию CRUD операций (Создание, Чтение, Обновление и Удаление задач) с использованием ASP.NET Core, Entity Framework Core и паттернов проектирования для организации чистой архитектуры.
 
-	Entity Framework: 
- 		Используйте Entity Framework для взаимодействия с базой данных. 
-  		Создайте модель данных для задач и настройте контекст базы данных.
+## Технологии
 
-	Требования:
-		1)Создайте RESTful API с использованием ASP.NET Web API или ASP.NET Core.
-		2)Реализуйте эндпоинты для CRUD операций: создание, чтение, обновление и удаление задач.
-		3)Разделите код по различным слоям (например, Controllers, Services, Repositories) в соответствии с чистой архитектурой.
-		4)Внедрите зависимости с помощью DI-контейнера (например, использование встроенного DI-контейнера или стороннего контейнера, такого как Autofac или Unity).
-		5)Используйте медиатор для обработки команд и запросов задач, а также для управления взаимодействием между различными компонентами системы.
-		6)Подключите Entity Framework и создайте модель данных для задач. Реализуйте CRUD операции через ORM с использованием EF Core.
-		7)Для удобства тестирования и документирования API, используйте Swagger (OpenAPI) для автоматической генерации документации.
-	
-<h1>Материалы:</h1>
-   <ul>
-		<li>Проект АТАЧ</li>
-		<li>https://learn.microsoft.com/ru-ru/dotnet/architecture/cloud-native/introduce-eshoponcontainers-reference-app</li>
-		<li>https://github.com/dotnet/eShop</li>
-		<li>https://habr.com/en/articles/718916/</li>
-		<li>https://metanit.com/sharp/</li>
-		<li>https://learn.microsoft.com/ru-ru/dotnet/csharp/</li>
-		<li>https://microservices.io/index.html</li>
-		<li>https://xunit.net/</li>
-   </ul>
+- **ASP.NET Core**: Для создания RESTful API.
+- **Entity Framework Core**: Для взаимодействия с базой данных.
+- **MediatR**: Для управления командами и запросами с использованием паттерна "Mediator".
+- **Dependency Injection**: Для облегчения тестирования и поддержки.
+- **Swagger (OpenAPI)**: Для автоматической генерации документации API.
 
+## Архитектура
 
+Проект разделен на следующие слои:
 
+1. **Presentation Layer (Controllers)**: Обрабатывает HTTP-запросы и возвращает HTTP-ответы.
+2. **Business Logic Layer (Services)**: Содержит бизнес-логику приложения.
+3. **Data Access Layer (Repositories)**: Выполняет операции доступа к данным и взаимодействует с базой данных.
 
+### Зависимости между слоями
 
+- **Controllers** зависят от **Services**.
+- **Services** зависят от **Repositories**.
+- **Repositories** взаимодействуют с **Entity Framework Core**.
 
+## Установка и запуск
 
+### Требования
 
+- [.NET 6.0 или выше](https://dotnet.microsoft.com/download/dotnet)
+- [Entity Framework Core](https://learn.microsoft.com/ru-ru/ef/core/)
+- [MediatR](https://github.com/jbogard/MediatR)
+- [Swagger](https://swagger.io/tools/swagger-ui/)
+
+### Шаги для запуска
+
+1. Клонируйте репозиторий:
+    ```bash
+    git clone https://github.com/yourusername/todo-list-microservice.git
+    cd todo-list-microservice
+    ```
+
+2. Установите зависимости и выполните миграции базы данных:
+    ```bash
+    dotnet restore
+    dotnet ef database update
+    ```
+
+3. Запустите приложение:
+    ```bash
+    dotnet run
+    ```
+
+4. Откройте браузер и перейдите по адресу [http://localhost:5000/swagger](http://localhost:5000/swagger) для доступа к документации API.
+
+## Эндпоинты API
+
+- **POST /api/tasks**: Создание новой задачи.
+- **GET /api/tasks**: Получение списка задач.
+- **GET /api/tasks/{id}**: Получение задачи по идентификатору.
+- **PUT /api/tasks/{id}**: Обновление задачи.
+- **DELETE /api/tasks/{id}**: Удаление задачи.
+
+## Тестирование
+
+Для запуска тестов используйте xUnit:
+
+```bash
+dotnet test
